@@ -64,28 +64,19 @@ namespace QuantConnect.Algorithm.CSharp
 {
     public class TestDatafeeds : QCAlgorithm
     {
-
         public override void Initialize()
         {
-            // Locally Lean installs free sample data, to download more data please visit https://www.quantconnect.com/docs/v2/lean-cli/datasets/downloading-data
-            SetStartDate(2013, 10, 7); // Set Start Date
-            SetEndDate(2013, 10, 11); // Set Start Date
-            SetCash(100000);             //Set Strategy Cash
+            SetStartDate(2023, 6, 1);
+            SetEndDate(2023, 6, 2);
+            SetCash(100000);
 
             AddEquity("SPY", Resolution.Minute);
-
+            AddEquity("QQQ", Resolution.Minute);
         }
 
-        /// OnData event is the primary entry point for your algorithm. Each new data point will be pumped in here.
-        /// Slice object keyed by symbol containing the stock data
-        public override void OnData(Slice data)
+        public override void OnData(Slice slice)
         {
-            if (!Portfolio.Invested)
-            {
-                SetHoldings("SPY", 1);
-                Debug("Purchased Stock");
-            }
+            Debug(slice.ToPrettyString());
         }
-
     }
 }

@@ -723,3 +723,4 @@ rust-project.json
 
 *.sln
 .vscode/
+backtests/
